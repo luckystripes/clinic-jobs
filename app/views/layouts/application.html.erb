@@ -1,14 +1,69 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Jobs</title>
+  <title>Match.hi</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+
 </head>
 <body>
 
-<%= yield %>
+	<header>
+  
+		<h1 class="page-header text-center">Match.hi</h1>
+	
+	</header>
+
+	<div class="container">
+<!---------------------------LOG IN------------------------>	
+	<div>
+		<% if logged_in? %>
+			<p class="text-right">
+	      	Logged in as: <%= current_user.name %> | <%= link_to 'Log Out', logout_path, method: :delete %>
+	     	</p>
+
+	    <% else %>
+			<p class="text-right">
+	        	<%= link_to 'Log In', login_path %> | <%= link_to 'Sign up', signup_path %>
+	      	</p>
+	      
+	    <% end %>
+    </div>
+
+<!---------------------------NAV------------------------>
+	<nav class="navbar navbar-default">
+		<div class="container">
+			<ul class="nav navbar-nav">
+					<li class="navbar-text"><%= link_to "All Jobs", root_path  %></li>
+				
+				<% Category.all.each do |category| %>
+					
+					<li class="navbar-text"><%= link_to category.name, jobs_path(category: category.name) %></li>
+					<% end %>
+				</ul>
+		
+		</div>	
+	</nav>
+
+<!---------------------------FLASH MESSAGES------------------------>	
+	<div>
+	    <% if flash[:welcome] %>
+	      <h4 class="bg-success flash text-center"><%= flash[:welcome] %></h4>
+	    <% end %>
+
+	    <% if flash[:error] %>
+	      <h4 class="bg-danger flash text-center"><%= flash[:error] %></h4>
+	    <% end %>
+    </div>
+    </div>
+
+
+<!---------------------------VIEWS------------------------>
+<div class="container">
+	<%= yield %>
+</div>
 
 </body>
 </html>
+
