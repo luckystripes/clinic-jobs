@@ -1,16 +1,23 @@
-<!-- <ul>
-	<% @jobs.each do |job| %>
-		<h2><%= link_to job.title, job %></h2>
-		<p><%= job.user.clinic_name %></p>
-	<% end %>
-</ul>
+<!--------------------- TOP RATED -------------------->
 
-<div>
-	<%= link_to "Add New Job", new_job_path  %>
-</div> -->
+<div class="jumbotron">
+  <div class="container">
+ 	<h3 class="text-center">
+ 		Top Rated 
+ 		<span class="glyphicon glyphicon-circle-arrow-up"></span>
+ 	</h3>
 
+  		<div id="seth">
+  			<%= image_tag "seth.jpg", :alt => "sethy the bud tender", class: "img-rounded recommended" %>
+  		</div>
+  		<div id="james">
+  			<%= image_tag "james.jpg", :alt => "james the grower", class: "img-rounded recommended" %>
+  	</div>
+  </div>
+</div>
 
-<div class="panel panel-default">
+<!--------------------- JOB POSTS -------------------->
+<div class="panel panel-success">
   <div class="panel-heading">
     <h3 class="panel-title"><%= @category_name %></h3>
   </div>
@@ -19,6 +26,7 @@
 		<h2><%= link_to job.title, job %></h2>
 		<p><%= job.user.clinic_name %></p>
 	<% end %>
+
 	<div>
 		<button type="button" class="btn btn-default btn-lg">
 			<%= link_to "Add New Job", new_job_path  %>

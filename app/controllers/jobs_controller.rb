@@ -39,16 +39,9 @@ class JobsController < ApplicationController
 
 	def edit
 		@job = find_job
-		unless current_user.id==blank?
-			flash[:error] = "Fuck off thats not your job post!"
-			redirect_to job_path
+		unless logged_in? && current_user.id==@job.user_id 
+			not_logged_in
 		end
-
-		unless current_user.id==@job.user_id 
-			flash[:error] = "Fuck off thats not your job post!"
-			redirect_to job_path
-		end
-	
 	end
 
 	def update
@@ -61,10 +54,14 @@ class JobsController < ApplicationController
 	end
 
 	def destroy
-		@job.destroy
-		redirect_to root_path
-	
+		if logged_in? && current_user.id==@job.user_id
+			@job.destroy
+			redirect_to root_path
+		else
+			not_logged_in
+		end
 	end
+
 
 
 	 private
@@ -77,5 +74,12 @@ class JobsController < ApplicationController
 			@job = Job.find(params[:id])
 		
 	 	end
+
+	 	def not_logged_in
+	 		flash[:error] = "You need to log in!"
+			redirect_to job_path
+	 	
+	 	end
+
 	 
 end
