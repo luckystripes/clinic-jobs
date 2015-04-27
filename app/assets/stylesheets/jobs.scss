@@ -2,8 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.add-job{
+	margin: 30px auto 0 auto;
+}
+
 .recommended{
-	margin-top: 10px;
+	margin-top: 20px;
 	width: 350px;
 	height: 300px;
 }
@@ -16,4 +20,26 @@
 #james{
 	float: right;
 	margin-right: 20px;
+}
+
+.jumbotron .recommended-name{
+	margin-top: 10px;
+	margin-bottom: 2px;
+}
+
+
+.glyphicon-chevron-left{
+	float: left;
+	margin-top: 170px;
+	padding-right: 20px;
+}
+
+.glyphicon-chevron-right{
+	float: right;
+	margin-top: 170px;
+	padding-left: 20px;
+}
+
+.job-list{
+
 }

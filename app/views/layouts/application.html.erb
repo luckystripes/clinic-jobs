@@ -2,18 +2,13 @@
 <html>
 <head>
   <title>Match.hi</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= favicon_link_tag 'favicon.png' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 
 </head>
 <body>
-
-	<header>
-  
-		<h1 class="page-header text-center">Match.hi</h1>
-	
-	</header>
 
 	<div class="container">
 <!---------------------------LOG IN------------------------>	
@@ -32,19 +27,50 @@
     </div>
 
 <!---------------------------NAV------------------------>
+
+
 	<nav class="navbar navbar-default">
 		<div class="container">
-			<ul class="nav navbar-nav">
-					<li class="navbar-text"><%= link_to "All Jobs", root_path  %></li>
-				
-				<% Category.all.each do |category| %>
-					
-					<li class="navbar-text"><%= link_to category.name, jobs_path(category: category.name) %></li>
+     
+
+			 <ul class="nav navbar-nav navbar-left" >
+
+       			<li id="logo"> 
+       			<%= image_tag "logo.png"%></li>
+
+		        <li class="nav-sections" >
+		        	<%= link_to "Home", jobs_path  %>
+		        </li>
+		        <li class="nav-sections" >
+		        	<%= link_to "Browse", jobs_path  %>
+		        </li>
+		        <li class="nav-sections">
+		        	<%= link_to "Events", jobs_path  %>
+		        </li>
+		        <li class="dropdown nav-sections">
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" 	role="button" aria-expanded="false">
+		          	Jobs <span class="caret"></span>
+		          </a>
+		         <ul class="dropdown-menu" role="menu">
+		          	<% Category.all.each do |category| %>
+			            <li >
+			            	<%= link_to category.name, jobs_path(category: category.name) %>
+			            </li>
 					<% end %>
-				</ul>
-		
+		            
+	         	 </ul>
+	        	</li>
+	      	</ul>
+	      	<!-- USER SETTINGS -->
+	      	<ul class="nav navbar-nav navbar-right nav-sections-right">
+	      		<li class="nav-icons"><i class="fa fa-flag"></i></li>
+				<li class="nav-icons"><i class="fa fa-comments fa-lg"></i></li>
+	        	<li class="nav-icons">Cannadash</li>
+	        	<li><i class="fa fa-bars fa-2x"></i></li>
 		</div>	
 	</nav>
+
+
 
 <!---------------------------FLASH MESSAGES------------------------>	
 	<div>
@@ -60,9 +86,23 @@
 
 
 <!---------------------------VIEWS------------------------>
-<div class="container">
-	<%= yield %>
+<div id="wrap">
+	<div class="container">
+		<%= yield %>
+	</div>
 </div>
+
+
+<!---------------------------FOOTER------------------------>
+
+	<footer id="footer">
+		<div class="container social text-center">
+		<p>&copy 2015 Match.hi all rights reserved</p>
+		<i class="fa fa-instagram fa-lg"></i>
+		<i class="fa fa-facebook fa-lg"></i>
+		</div>
+	</footer>
+
 
 </body>
 </html>

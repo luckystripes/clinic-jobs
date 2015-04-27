@@ -7,11 +7,18 @@ class JobsController < ApplicationController
 		if params[:category].blank?
 			@jobs = Job.all.order("created_at DESC")
 			@category_name = "All Jobs"
+			render "_recommended"
+
 		else
 			@category_id = Category.find_by(name: params[:category]).id
 			@category_name = Category.find_by(name: params[:category]).name	
 			@jobs = Job.where(category_id: @category_id).order("created_at DESC")
 		end
+
+		# unless params[:category]
+		# 	render "_recommended"
+			
+		# end
 	end
 
 	def show
@@ -20,6 +27,7 @@ class JobsController < ApplicationController
 	end
 
 	def new
+
 		@job = Job.new
 	
 	end
@@ -76,7 +84,7 @@ class JobsController < ApplicationController
 	 	end
 
 	 	def not_logged_in
-	 		flash[:error] = "You need to log in!"
+	 		flash[:error] = "Don't touch not yours"
 			redirect_to job_path
 	 	
 	 	end

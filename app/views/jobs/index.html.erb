@@ -1,21 +1,3 @@
-<!--------------------- TOP RATED -------------------->
-
-<div class="jumbotron">
-  <div class="container">
- 	<h3 class="text-center">
- 		Top Rated 
- 		<span class="glyphicon glyphicon-circle-arrow-up"></span>
- 	</h3>
-
-  		<div id="seth">
-  			<%= image_tag "seth.jpg", :alt => "sethy the bud tender", class: "img-rounded recommended" %>
-  		</div>
-  		<div id="james">
-  			<%= image_tag "james.jpg", :alt => "james the grower", class: "img-rounded recommended" %>
-  	</div>
-  </div>
-</div>
-
 <!--------------------- JOB POSTS -------------------->
 <div class="panel panel-success">
   <div class="panel-heading">
@@ -26,11 +8,10 @@
 		<h2><%= link_to job.title, job %></h2>
 		<p><%= job.user.clinic_name %></p>
 	<% end %>
-
-	<div>
-		<button type="button" class="btn btn-default btn-lg">
-			<%= link_to "Add New Job", new_job_path  %>
-		</button>
+	<div class="text-center">
+	<button type="button" class="btn btn-default btn-lg add-job">
+		<%= link_to "+ New Job", new_job_path  %>
+	</button>
 	</div>
   </div>
 </div>
